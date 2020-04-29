@@ -76,7 +76,7 @@ function App() {
     <div className="bg-white md:p-4 p-2 md:w-2/3 mx-auto md:text-base text-sm h-full flex md:flex-row flex-col rounded shadow-lg">
 
       {/* introductory part, control functions */}
-      <div className="font-bold md:my-0 my-4 px-4 md:w-1/2">
+      <div className="font-bold md:my-0 my-4 px-4 md:w-1/2 flex flex-col md:h-full">
         <h2 className="my-2 text-2xl flex items-center">Get your Location Trail 
         <img className={`md:w-8 w-6 inline-block mx-2 transtion-all duration-100 ${locationEnabled ? "opacity-100" : "opacity-25"}`} src={earth} alt=""/>
         </h2> 
@@ -102,13 +102,13 @@ function App() {
         <p className="my-2">To clear location trail click
         <button onClick={() => setCoordinates([])} className={`px-1 rounded shadow-sm mx-1 font-bold ${coordinates.length!==0 ? " bg-yellow-500" : "bg-gray-400"}`} >clear</button>
         </p>
-        <div className="mt-4">
+        <div className="mt-4 md:flex-grow md:h-auto h-36">
           <Map position={currentPosition}/>
         </div>
 
       </div>
         {/* Location trail */}
-      <div className="md:w-1/2 flex-grow overflow-y-scroll py-2">
+      <div className="md:w-1/2 flex-grow  overflow-y-scroll py-2">
       <LocationTrail coordinates={coordinates} />
       </div>
     </div>
