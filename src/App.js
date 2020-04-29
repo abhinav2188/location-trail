@@ -2,10 +2,16 @@ import React,{useState} from 'react';
 import LocationTrail from "./components/LocationTrail";
 import earth from "./svgs/worldwide (1).svg";
 import Alert from "./components/UI/alert";
+import Map from "./components/map";
+
 var intervalID;
 
 function App() {
   const [coordinates,setCoordinates] = useState([]);
+  const [currentPosition, setCurrentPosition] = useState({
+    lat:"",
+    lon:""
+  })
   const[msg,setMsg] = useState("");
   const[locationEnabled, setLocationEnabled] = useState(false);
   const[locationFilter,setLocationFilter] = useState({
@@ -25,6 +31,10 @@ function App() {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition( position => {
         setLocationEnabled(true);
+        setCurrentPosition({
+          lat:position.coords.latitude,
+          lon:position.coords.longitude
+        });
         setCoordinates( prevState => ([
           ...prevState, {
           latitude : position.coords.latitude,
@@ -92,6 +102,10 @@ function App() {
         <p className="my-2">To clear location trail click
         <button onClick={() => setCoordinates([])} className={`px-1 rounded shadow-sm mx-1 font-bold ${coordinates.length!==0 ? " bg-yellow-500" : "bg-gray-400"}`} >clear</button>
         </p>
+        <div className="mt-4">
+          <Map position={currentPosition}/>
+        </div>
+
       </div>
         {/* Location trail */}
       <div className="md:w-1/2 flex-grow overflow-y-scroll py-2">

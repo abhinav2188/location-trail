@@ -1,5 +1,16 @@
 @tailwind base;
 
+.leaflet-container{
+    width:100%;
+    height: 200px;
+}
+
+@screen md{
+    .leaflet-container{
+        height: 400px;
+    }
+    
+}
 @tailwind components;
 
 @tailwind utilities;
